@@ -6,8 +6,6 @@
     <img :src="list.img"></div>
     </div>
     <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
   </div>
 </template>
 
@@ -20,11 +18,17 @@
     mounted(){
         new Swiper('.swiper-container',{
             loop:true,
-            pagination:'.swiper-pagination',
+             pagination: {
+             el: '.swiper-pagination',
+             type: 'bullets',
+             },
             navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
-    }
+            },
+            autoplay: {
+            delay: 3000,
+            },
 
         })
     }
