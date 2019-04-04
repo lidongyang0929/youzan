@@ -11,6 +11,8 @@ import Vue from 'vue'
 import url from 'js/api'
 import foot from 'component/foot'
 import qs from 'qs'
+import swiper from 'component/Swiper'
+
 
 let {id} = qs.parse(location.search.substr(1))
 
@@ -20,7 +22,8 @@ new Vue({
        details:null,
        tabIndex:0,
        detailTab:['商品详情','本店成交'],
-       dealLists:null
+       dealLists:null,
+       bannerLists:null
     },
     created(){
         this.getDetails()
@@ -29,6 +32,13 @@ new Vue({
         getDetails(){
             axios.get(url.details,{id}).then(res=>{
                 this.details = res.data.data
+                this.bannerLists = []
+                this.details.imgs.forEach(item=>{
+                    this.bannerLists.push({
+                        clickUrl:'',
+                        img:item
+                    })
+                })
                
             })
         },
@@ -44,6 +54,9 @@ new Vue({
             })
         }
     },
+    components:{
+        swiper
+    }
    
     
 })
