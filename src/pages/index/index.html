@@ -66,7 +66,7 @@
        infinite-scroll-disabled="loading"
        infinite-scroll-distance="10">
           <li v-for="list in lists">
-              <img :src=list.img>
+              <a :href="'goods.html?id='+list.id"><img :src=list.img></a>
               <div class="detail">
               <div class="title">{{list.name}}</div>
               <div class="price">{{list.price}}</div>

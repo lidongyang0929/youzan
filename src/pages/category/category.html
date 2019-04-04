@@ -27,25 +27,8 @@
       <form>
         <input type="search" class="custom-search-input" autocomplete="off" name="keyword" value="" placeholder="搜索更赞的商品">
         <span class="icon-custom-search"></span>
-      </form>
-      <div class="search-type-dropdown-menu">
-        <span class="search-type-dropdown-menu-indicator">
-            <i></i>
-        </span>
-        <div class="drop-menu-content">
-          <div class="search-type-goods">
-            <i class="icon-goods"></i>
-            <span>商品</span>
-          </div>
-          <div class="search-type-dropdown-menu-divider"></div>
-          <div class="search-type-shop">
-            <i class="icon-shop"></i>
-            <span>店铺</span>
-          </div>
-        </div>
-      </div>
+      </form>   
     </div>
-    <div class="search-content" style="display:none"></div>
     <div class="content" style="height: 617px;">
       <div class="class-nav">
         <div id="scroll-nav" style="height: 100%;">
@@ -67,7 +50,7 @@
                 </div>
                 <ul>
                   <li class="goods-item" v-for="good in goods">
-                    <a href="https://h5.youzan.com/v2/showcase/goods?alias=27cjv5wdsb4to&source=yzapp&f_platform=yzapp">
+                    <a :href="'goods.html?id='+good.id">
                       <div class="thumb badge center-img">
                         <img :src="good.img">
                         <span class="num">{{good.id}}</span>
@@ -137,8 +120,9 @@
       
     </div>
   </div>
- <foot></foot>
-</div></div>
+  <foot></foot>
+</div>
+
 </body>
  
 </html>
