@@ -28,7 +28,7 @@ new Vue({
                 this.getRankLists()
             }else{
             axios.get(url.subLists,{id}).then(res=>{
-                this.categoryList = res.data.data.categoryList
+                this.subData = res.data.data
                  
             })}
         },

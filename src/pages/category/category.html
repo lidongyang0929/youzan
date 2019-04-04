@@ -28,9 +28,7 @@
         <input type="search" class="custom-search-input" autocomplete="off" name="keyword" value="" placeholder="搜索更赞的商品">
         <span class="icon-custom-search"></span>
       </form>
-      <button class="custom-search-type-selection-btn">商品</button>
-      <span class="cancel">取消</span>
-      <div class="search-type-dropdown-menu" style="display: none;">
+      <div class="search-type-dropdown-menu">
         <span class="search-type-dropdown-menu-indicator">
             <i></i>
         </span>
@@ -72,7 +70,7 @@
                     <a href="https://h5.youzan.com/v2/showcase/goods?alias=27cjv5wdsb4to&source=yzapp&f_platform=yzapp">
                       <div class="thumb badge center-img">
                         <img :src="good.img">
-                        <span class="num">1</span>
+                        <span class="num">{{good.id}}</span>
                       </div>
                       <div class="detail">
                         <div class="title">{{good.name}}</div>
@@ -96,7 +94,7 @@
                     <div class="shop-title">
                       <span class="badge">1</span>
                       <a href="shop.clickUrl">{{shop.name}}</a>
-                      <span class="follows"> / 关注度: {{shop.follows}}</span>
+                      <span class="follows">关注度: {{shop.follows}}</span>
                     </div>
                     <ul class="shop-images">
                       <li v-for="(img,index) in shop.imgs">
@@ -111,7 +109,7 @@
                   <p class="pull-left">热搜词排行</p>
                 </div>
                 <ul class="keywords-list">
-                 <li><a  class="js-hot-keyword">化妆水</a></li>
+                 <li><a class="js-hot-keyword">化妆水</a></li>
                 </ul>
               </div>
             </div>
@@ -119,15 +117,20 @@
           <div id="scroll-main-content" class="js-main-content inner-content" style="height: 534px; transform: translate3d(0px, 0px, 0px);" v-if="topIndex!== 0">
             <h3 class="category-title">热门品牌 </h3>
             <ul class="category-content">
-              <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子" v-for="category in categoryList">
+              <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子" v-for="brand in subData.brandList">
+                <img :src="brand.img" alt="良品铺子" class="category-img">
+                <span class="category-item-name">
+                {{brand.name}} </span>
+              </li> 
+            </ul>
+            <h3 class="category-title"> 热门分类</h3>
+            <ul class="category-content">
+              <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子" v-for="category in subData.categoryList">
                 <img :src="category.img" alt="良品铺子" class="category-img">
                 <span class="category-item-name">
                 {{category.name}} </span>
-              </li>
-              
+              </li> 
             </ul>
-            <h3 class="category-title"> 热门分类</h3>
-            <ul class="category-content"></ul>
           </div>
         </div>
       </div>
