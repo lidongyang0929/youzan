@@ -28,7 +28,8 @@ new Vue({
        skuType:1,
        showSku:false,
        skuNum: 1,
-       isAddCart:false
+       isAddCart:false,
+       addMessage: false
     },
     created(){
         this.getDetails()
@@ -74,6 +75,10 @@ new Vue({
                if(res.data.status === 200){
                    this.showSku = false
                    this.isAddCart = true
+                   this.addMessage = true
+                   setTimeout(()=>{
+                       this.addMessage = false
+                   },1000)
                }
            })
        }
