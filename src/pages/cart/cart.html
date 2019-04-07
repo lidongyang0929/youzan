@@ -21,8 +21,8 @@
       <div id="cart-container">
           <div class="js-shop-list shop-list">
             <div class="block block-order block-cart" v-for="(shop,shopIndex) in cartLists">
-              <div class="header">
-                <div class="select-group js-select-group"><span class="check"></span></div> 
+              <div class="header" @click="selectShop(shop)">
+                <div class="select-group js-select-group"><span class="check" :class="{checked:shop.checked}"></span></div> 
                 <a class="shop-title"><i class="custom-store-img">店铺：</i>{{shop.shopTitle}}</a>
                 <a href="javascript:;" data-type="cart" class="j-edit-list pull-right c-blue font-size-12 edit-list">
                   编辑
@@ -30,10 +30,10 @@
               </div>
               <div>
                 <ul class="js-list block block-list block-list-cart border-0"  v-for="(good,goodIndex) in shop.goodsList">
-                  <li class="block-item block-item-cart">
-                      <div class="check-container"><span class="check"></span></div>
+                  <li class="block-item block-item-cart" @click="selectGood(good,shop)">
+                      <div class="check-container"><span class="check" :class="{checked:good.checked}"></span></div>
                       <div class="name-card clearfix">
-                        <a :href="'goods.html?id='+good.id" class="thumb js-goods-link"><img :src="good.img"></a>
+                        <a :href="'goods.html?id='+good.id" class="thumb js-goods-link"><img :src="good.img" ></a>
                         <div class="detail"><a  class="js-goods-link">
                             <h3 class="title js-ellipsis"><i>{{good.title}}</i></h3></a>
                           <p class="sku ellipsis"> {{good.sku}}</p>
@@ -110,7 +110,7 @@
               你需要分开结算每个店铺的商品哦~
             </div>
             <div class="bottom-cart clear-fix">
-              <div class="select-all"><span class="check checked"></span> 全选
+              <div class="select-all" @click="selectAll"><span class="check" :class="{checked:allSelected}"></span> 全选
               </div>
               <!-- 显示状态 -->
               <div class="total-price" style="display: none;">
