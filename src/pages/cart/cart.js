@@ -12,19 +12,30 @@ new Vue({
     el:'.container',
     data:{
         cartLists:null,
-        checked: false
+        checked: false,
+        total:0
     },
     computed:{
-      allSelected:{
-          get(){
+      allSelected(){
               if(this.cartLists){
             return this.cartLists.every(shop=>{
                 return shop.checked
             })
           }return false
         },
-      }
-    },
+        selectedLists(){
+            let arr = []
+            if(this.cartLists){
+            this.cartLists.forEach(shop=>{
+                shop.goodsList.forEach(good=>{
+                    if(good.checked){
+                        arr.push(good)
+                        this.total += good.price * good.number
+                    } 
+                })
+            })} return
+        }
+      },
     created(){
         this.getLists()
     },
@@ -34,6 +45,8 @@ new Vue({
               let lists = res.data.cartList
               lists.forEach(shop=>{
                   shop.checked = false
+                  shop.editing = false
+                  shop.editingMsg = '编辑'
                   shop.goodsList.forEach(good=>{
                       good.checked = false
                   })
@@ -58,9 +71,22 @@ new Vue({
             this.cartLists.forEach(shop=>{
                 this.selectShop(shop)
             })
-        }
-       
-    },}
+        } 
+    },
+    edit(shop,shopIndex){
+        shop.editing = ! shop.editing
+        shop.editingMsg = shop.editing ? '完成':'编辑'
+            this.cartLists.forEach((item,index)=>{
+               if(shopIndex !== index){
+                   item.editing = false
+                   item.editingMsg = shop.editing ? '':'编辑'
+               }
+            })
+        
+    }
+
+
+}
     
 
 })
