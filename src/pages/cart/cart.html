@@ -41,17 +41,15 @@
                           <!-- 显示状态 -->
                           <div class="num" v-show="!shop.editing">
                             ×<span class="num-txt">{{good.number}}</span>
-                            <!---->
                           </div>
                           <!-- 编辑状态 -->
                           <div class="num" v-show="shop.editing">
-                            <!---->
                             <div class="quantity">
-                              <button type="button" class="minus disabled"></button>
+                              <button type="button" class="minus" :class="{disabled:good.number===1}"></button>
                               <input type="text" pattern="[0-9]*" class="txt" v-model="good.number">
                               <button type="button" class="plus "></button>
-                              <div class="response-area response-area-minus"></div>
-                              <div class="response-area response-area-plus"></div>
+                              <div class="response-area response-area-minus" @click="reduce(good)"></div>
+                              <div class="response-area response-area-plus" @click="add(good)"></div>
                             </div>
                           </div>
                           <div class="price c-orange">
@@ -60,13 +58,8 @@
                         <div class="error-box"></div>
                       </div>
                       <div class="delete-btn"><span>删除</span></div>
-                    
                   </li>
-                  <li class="block-item block-item-cart">
-                    <div>
-                      <div class="delete-btn"><span>删除</span></div>
-                    </div>
-                  </li>
+                  
                 </ul>
               </div>
             </div>
@@ -128,12 +121,6 @@
           </div>
         
       </div>
-    </div>
-  </div>
-  <div class="footer" style="min-height: 86px;">
-    <div class="copyright">
-      <div class="ft-copyright " style="background-image: url(https://img.yzcdn.cn/upload_files/2016/11/15/147918630760182374.png);">
-        <a class="yz-logo" href="https://www.youzan.com/?from_source=support_logo">有赞提供技术支持</a> </div>
     </div>
   </div>
 </body>

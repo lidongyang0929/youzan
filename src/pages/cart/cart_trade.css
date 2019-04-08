@@ -692,10 +692,10 @@
   }
    
   .block-list-cart .block-item-cart .delete-btn {
-    width: 640px;
-    height: 100%;
+    width: 60px;
+    height: 100px;
     position: absolute;
-    right: -640px;
+    right: -60px;
     top: -1px;
     background-color: #ff4343;
     color: #fff;

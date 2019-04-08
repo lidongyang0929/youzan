@@ -83,7 +83,26 @@ new Vue({
                }
             })
         
-    }
+    },
+    reduce(good){
+        if(good.number===1) return
+        axios.post(url.cartReduce,{
+            id:good.id,
+            number:1
+        }).then(res=>{
+            good.number --
+        })
+    },
+    add(good){
+        axios.post(url.addCart,{
+            id:good.id,
+            number:1
+        }).then(res=>{
+            good.number ++
+        })
+    },
+    
+
 
 
 }
