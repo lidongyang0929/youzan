@@ -8,7 +8,9 @@ let routes = [{
 },{
     path:'/address',
     components:require('./components/address.vue'),
-    children:[{path:'',redirect:'all'},{
+    children:[{
+            path:'',redirect:'all'},
+        {
             path:'all',
             components:require('./components/all.vue')
         },

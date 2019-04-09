@@ -80,6 +80,6 @@
 </template>
 <style scoped>
 @import './address_base.css';
-import './address_add.css'
+
 
 </style>
