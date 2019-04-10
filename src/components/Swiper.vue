@@ -2,8 +2,9 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
     <div class="swiper-slide" v-for="list in lists">
-    <a :href="list.clickUrl"></a>
-    <img :src="list.img"></div>
+    <a :href="list.clickUrl">
+    <img :src="list.img">
+    </a></div>
     </div>
     <div class="swiper-pagination"></div>
   </div>
