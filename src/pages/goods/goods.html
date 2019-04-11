@@ -55,7 +55,7 @@
         </div>
         <div class="sku-detail adv-opts">
           <div class="sku-detail-inner adv-opts-inner">
-            <dl class="sku-group select-sku js-select-sku">
+            <dl class="sku-group select-sku js-select-sku" @click="chooseSku(1)">
               <dt><span class="js-sku-label">选择</span>：</dt>
               <dd class="js-sku-value">
                 <span class="sku-item">净含量</span> </dd>
@@ -88,7 +88,7 @@
         <div class="js-detail-container" style="margin-top: 10px;">
           <div class="js-tabber-container goods-detail">
             <div class="js-tabber tabber tabber-n2 clearfix orange">
-              <button data-type="goods" class="{active:index===tabIndex}" v-for="(item,index) in detailTab"
+              <button data-type="goods" :class="{active:index===tabIndex}" v-for="(item,index) in detailTab"
               @click="changeTab(index)">
                 {{item}} </button>
             </div>
@@ -272,7 +272,7 @@
     </div>
     <div class="adv-opts layout-content" style="max-height: 554px;">
       <div class="goods-models js-sku-views block block-list border-top-0">
-        <dl class="clearfix block-item sku-list-container" @click="chooseSku(1)">
+        <dl class="clearfix block-item sku-list-container" >
           <dt class="model-title sku-sel-title">
             <label>净含量：</label>
           </dt>
