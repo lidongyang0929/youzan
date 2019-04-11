@@ -14,7 +14,9 @@ new Vue({
     topIndex:0,
     shops: null,
     keywords: null,
-    categoryList:null
+    categoryList:null,
+    brands:null,
+    categorys:null
     },
     methods:{
         getTopLists(){
@@ -29,6 +31,8 @@ new Vue({
             }else{
             axios.get(url.subLists,{id}).then(res=>{
                 this.subData = res.data.data
+                this.brands = res.data.data.brandList
+                this.categorys = res.data.data.categoryList
                  
             })}
         },
