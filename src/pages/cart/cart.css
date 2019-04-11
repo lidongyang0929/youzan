@@ -742,6 +742,9 @@
     font-weight: 500;
     color: #f60;
     position: relative;
+    position:fixed;
+    bottom:0;
+    width:100%
     
   }
    
