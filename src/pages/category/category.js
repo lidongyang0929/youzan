@@ -3,7 +3,7 @@ import './category.css'
 import axios from 'axios'
 import Vue from 'vue'
 import url from 'js/api'
-import foot from 'component/foot'
+import foot from 'components/foot'
 
 new Vue({
     el:'#app',

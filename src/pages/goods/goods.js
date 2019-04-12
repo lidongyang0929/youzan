@@ -9,9 +9,9 @@
 import axios from 'axios'
 import Vue from 'vue'
 import url from 'js/api'
-import foot from 'component/foot'
+import foot from 'components/foot'
 import qs from 'qs'
-import swiper from 'component/Swiper'
+import swiper from 'components/Swiper'
 
 
 let {id} = qs.parse(location.search.substr(1))

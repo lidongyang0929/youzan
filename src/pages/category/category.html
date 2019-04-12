@@ -35,7 +35,7 @@
          <ul class="nav" id="scroll-nav-content" style="height: 540px;transform: translate3d(0,0,0)">
              <li v-for="(list,index) in topLists" class="category-name js-category-name" :data-cid="list.id"
              @click="getSubLists(index,list.id)"
-             :class={active:topIndex===index}> {{list.name}} </li>
+             :class="{active:topIndex===index}"> {{list.name}} </li>
          </ul>
         </div>
     </div>

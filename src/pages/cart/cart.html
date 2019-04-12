@@ -32,7 +32,9 @@
               <div>
                 <ul class="js-list block block-list block-list-cart border-0" :class="{editing:shop.editing}" v-for="(good,goodIndex) in shop.goodsList">
                   <li class="block-item block-item-cart" @click="selectGood(good,shop)">
-                      <div class="check-container"><span class="check" :class="{checked:good.checked}"></span></div>
+                      <div class="check-container">
+                        <span class="check"  :class="{checked:good.checked}"></span>
+                        </div>
                       <div class="name-card clearfix">
                         <a :href="'goods.html?id='+good.id" class="thumb js-goods-link"><img :src="good.img" ></a>
                         <div class="detail"><a  class="js-goods-link">
@@ -119,7 +121,8 @@
                 结算
               </button>
               <!-- 编辑状态 -->
-              <button href="javascript:;" disabled="disabled" class="j-delete-goods btn font-size-14 btn-red" style="display:none">删除
+              <button href="javascript:;"  class="j-delete-goods btn font-size-14 btn-red" v-show="editingShop"
+              :disabled="!removeLists.length">删除
                     </button>
             </div>
           </div>

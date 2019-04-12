@@ -13,7 +13,10 @@ new Vue({
     data:{
         cartLists:null,
         checked: false,
-        total:0
+        total:0,
+        editingShop:null,
+        editingShopIndex: -1
+
     },
     computed:{
       allSelected:{
@@ -25,7 +28,6 @@ new Vue({
               } return false
           },
             set(newVal){
-                if(!this.cartLists) return 
                this.cartLists.forEach(shop=>{
                    shop.checked = newVal
                    shop.goodsList.forEach(good=>{
@@ -36,15 +38,29 @@ new Vue({
         },
         selectedLists(){
             let arr = []
+            let total = 0
             if(this.cartLists){
             this.cartLists.forEach(shop=>{
                 shop.goodsList.forEach(good=>{
                     if(good.checked){
                         arr.push(good)
-                        this.total += good.price * good.number
+                        total += good.price * good.number
                     } 
                 })
-            })} return
+            })
+            this.total = total
+            return arr
+        }    
+        },
+        removeLists(){
+            if(this.editingShop){
+                let arr = []
+                this.editingShop.goodsList.forEach(good=>{
+                    if(good.checked){
+                        arr.push(good)
+                    }
+                })
+            return arr} return []
         }
       },
     created(){
@@ -57,9 +73,11 @@ new Vue({
               lists.forEach(shop=>{
                   shop.checked = false
                   shop.editing = false
+                  shop.removeChecked = false
                   shop.editingMsg = '编辑'
                   shop.goodsList.forEach(good=>{
                       good.checked = false
+                      good.removeChecked = false
                   })
               })
               this.cartLists = lists
@@ -84,12 +102,13 @@ new Vue({
     edit(shop,shopIndex){
         shop.editing = ! shop.editing
         shop.editingMsg = shop.editing ? '完成':'编辑'
-            this.cartLists.forEach((item,index)=>{
-               if(shopIndex !== index){
-                   item.editing = false
-                   item.editingMsg = shop.editing ? '':'编辑'
-               }
-            })
+        this.cartLists.forEach((item,index)=>{
+            if(shopIndex !== index){ 
+                item.editingMsg = shop.editing ? '':'编辑'
+            }
+         })
+          this.editingShop = shop.editing? shop: null
+          this.editngShopIndex = shop.editing?shopIndex: -1
         
     },
     reduce(good){
