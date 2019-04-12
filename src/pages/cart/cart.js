@@ -16,12 +16,23 @@ new Vue({
         total:0
     },
     computed:{
-      allSelected(){
-              if(this.cartLists){
-            return this.cartLists.every(shop=>{
-                return shop.checked
-            })
-          }return false
+      allSelected:{
+          get(){
+            if(this.cartLists){
+                return this.cartLists.every(shop=>{
+                    return shop.checked
+                })
+              } return false
+          },
+            set(newVal){
+                if(!this.cartLists) return 
+               this.cartLists.forEach(shop=>{
+                   shop.checked = newVal
+                   shop.goodsList.forEach(good=>{
+                       good.checked = newVal
+                   })
+               })
+            }   
         },
         selectedLists(){
             let arr = []
@@ -68,10 +79,7 @@ new Vue({
         },
         selectAll(){
             if(this.cartLists){
-            this.cartLists.forEach(shop=>{
-                this.selectShop(shop)
-            })
-        } 
+           this.allSelected = !this.allSelected }
     },
     edit(shop,shopIndex){
         shop.editing = ! shop.editing

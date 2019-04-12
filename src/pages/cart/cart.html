@@ -50,14 +50,18 @@
                               <button type="button" class="plus "></button>
                               <div class="response-area response-area-minus" @click="reduce(good)"></div>
                               <div class="response-area response-area-plus" @click="add(good)"></div>
+                              
                             </div>
+                            
                           </div>
                           <div class="price c-orange">
                             ¥<span>{{good.price}} </span></div>
                         </div>
                         <div class="error-box"></div>
+                        </div>
+                        <div class="delete-btn"><span>删除</span></div>
                       </div>
-                      <div class="delete-btn"><span>删除</span></div>
+                      
                   </li>
                   
                 </ul>
@@ -115,7 +119,7 @@
                 结算
               </button>
               <!-- 编辑状态 -->
-              <button href="javascript:;" disabled="disabled" class="j-delete-goods btn font-size-14 btn-red">删除
+              <button href="javascript:;" disabled="disabled" class="j-delete-goods btn font-size-14 btn-red" style="display:none">删除
                     </button>
             </div>
           </div>
