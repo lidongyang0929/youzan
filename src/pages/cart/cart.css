@@ -1466,6 +1466,7 @@ hr.cart {
 }
 
 #cart-container .shop-list {
+  
   background-color: #fff
 }
 
@@ -1709,4 +1710,22 @@ only screen and (min-device-pixel-ratio: 1.5) {
   height: 50px;
   top: initial;
   bottom: 0px
+}
+.content .top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f60;
+  padding: 20px 0;
+  
+}
+.content .top-left{
+  padding-left: 15px;
+  font-size: 30px;
+  font-family: inherit;
+  color: white
+}
+.top-right{
+  padding-right: 10px;
+  color: #38f
 }
