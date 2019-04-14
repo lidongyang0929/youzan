@@ -48,7 +48,7 @@ exports.htmlPlugin = function() {
 exports.assetsPath = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
   ? './' +config.build.assetsPublicPath
-  : './' + config.dev.assetsPublicPath
+  : '' + config.dev.assetsPublicPath
   return path.posix.join(assetsSubDirectory, _path)
 }
 

@@ -16,7 +16,7 @@
 </head>
  
 <body class=" body-fixed-bottom" style="">
-  <div class="container " style="min-height: 581px;">
+  <div class="container" style="min-height: 581px;">
     <div class="content clearfix js-page-content">
       <div id="cart-container">
           <div class="js-shop-list shop-list">
@@ -33,7 +33,8 @@
                 <ul class="js-list block block-list block-list-cart border-0" :class="{editing:shop.editing}" v-for="(good,goodIndex) in shop.goodsList">
                   <li class="block-item block-item-cart" @click="selectGood(good,shop)">
                       <div class="check-container">
-                        <span class="check"  :class="{checked:good.checked}"></span>
+                        <span class="check"  :class="{checked:good.checked}" v-show="!shop.editing"></span>
+                        <span class="check"  :class="{checked:good.removeChecked}" v-show="shop.editing"></span>
                         </div>
                       <div class="name-card clearfix">
                         <a :href="'goods.html?id='+good.id" class="thumb js-goods-link"><img :src="good.img" ></a>
@@ -110,7 +111,8 @@
               你需要分开结算每个店铺的商品哦~
             </div>
             <div class="bottom-cart clear-fix">
-              <div class="select-all" @click="selectAll"><span class="check" :class="{checked:allSelected}"></span> 全选
+              <div class="select-all" @click="selectAll">
+                <span class="check" :class="{checked:allSelected}" v-show="!editingShop"></span> 全选 
               </div>
               <!-- 显示状态 -->
               <div class="total-price">
@@ -126,10 +128,10 @@
                     </button>
             </div>
           </div>
-        
       </div>
+      <foot></foot>
     </div>
-  </div>
+
 </body>
  
 </html>

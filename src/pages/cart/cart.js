@@ -4,6 +4,7 @@ import './cart.css'
 import axios from 'axios'
 import Vue from 'vue'
 import url from 'js/api'
+import foot from 'components/foot'
 
 
 
@@ -15,8 +16,9 @@ new Vue({
         checked: false,
         total:0,
         editingShop:null,
-        editingShopIndex: -1
-
+        editingShopIndex: -1,
+        removeChecked:false,
+        allRemoveChecked: false
     },
     computed:{
       allSelected:{
@@ -84,19 +86,21 @@ new Vue({
             })
         },
         selectGood(good,shop){
-            good.checked = ! good.checked
-            shop.checked = shop.goodsList.every(good=>{
-                return good.checked
+            let attr = shop.editing? 'removeChecked':'checked'
+            good[attr]=!good[attr]
+            shop[attr] = shop.goodsList.every(good=>{
+                return good[attr]
             })
         },
         selectShop(shop){
-            shop.checked = !shop.checked
+            let attr = this.editingShop?'removeChecked':'checked'
+            shop[attr] = !shop[attr]
             shop.goodsList.forEach(good=>{
-                good.checked = shop.checked
+                good[attr]= shop[attr]
             })
         },
         selectAll(){
-            if(this.cartLists){
+           if(this.cartLists){
            this.allSelected = !this.allSelected }
     },
     edit(shop,shopIndex){
@@ -132,6 +136,9 @@ new Vue({
 
 
 
+},
+components:{
+    foot
 }
     
 

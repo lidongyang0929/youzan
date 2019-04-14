@@ -737,7 +737,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
   background-color: #fff;
   font-weight: 500;
   color: #f60;
-  position: relative
+  position: relative;
+  margin-bottom: 50px;
 }
 
 .bottom-fix .bottom-cart .select-all {
