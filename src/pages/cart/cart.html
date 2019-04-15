@@ -115,7 +115,7 @@
                 全选
               </div>
               <!-- 显示状态 -->
-              <div class="total-price">
+              <div class="total-price" v-show="!editing">
                 合计：¥<span class="js-total-price" style="color: rgb(255, 102, 0);">{{total}}</span>
                 <p class="c-gray-dark">不含运费</p>
               </div>
@@ -124,12 +124,27 @@
               </button>
               <!-- 编辑状态 -->
               <button href="javascript:;"  class="j-delete-goods btn font-size-14 btn-red" v-show="editing"
-              :disabled="!removeLists.length">删除</button>
+              :disabled="!removeLists.length" @click="removePopup=true">删除</button>
             </div>
           </div>
+       <div id="0SuefKPV4p" v-show="removePopup" style="height: 100%; position: fixed; top: 0px; left: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.7); z-index: 1000;  opacity: 1;"></div>
+       <div id="d2tfiX27YS" v-show="removePopup" class="popout-confirm popout-box" style="overflow: hidden; position: absolute; z-index: 1000; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0px); visibility: visible; border-radius: 4px; background: white; width: 270px; padding: 15px; opacity: 1;">
+        <div class="confirm-content font-size-14" style="line-height: 20px; padding: 5px 5px 10px;"> 
+          确定删除商品吗?
+        </div>
+        <hr style="margin: 9px -15px 10px;">
+        <div class="btn-2-1" style="width: 47.5%;">
+            <p class="js-cancel center font-size-16" style="padding-top: 5px;" @click="removePopup=false">取消</p>
+        </div>
+        <div class="btn-2-1" style="width: 47.5%;">
+            <p class="js-ok center c-green font-size-16" style="padding-top: 5px;" @click="removeConfirm">确定</p>
+        </div>
+       </div>
       </div>
       <foot></foot>
-    </div>
+      
+  </div>
+   
 
 </body>
  

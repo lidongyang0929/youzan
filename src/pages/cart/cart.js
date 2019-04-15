@@ -16,10 +16,9 @@ new Vue({
         cartLists:null,
         checked: false,
         total:0,
-        removeChecked:false,
-        allRemoveChecked: false,
         editing: false,
-        editingMsg:'编辑'
+        editingMsg:'编辑',
+        removePopup:false,
     },
     computed:{
       allSelected:{
@@ -123,12 +122,8 @@ new Vue({
             })
         },
         selectAll(){
-           if(!this.editing){
-           this.allSelected = !this.allSelected 
-        }else{
-            this.allRemoveSelected=!this.allRemoveSelected
-        }
-
+         let attr = this.editing?'allRemoveSelected':'allSelected'
+         this[attr]=!this[attr]
     },
     reduce(good){
         if(good.number===1) return
@@ -146,8 +141,32 @@ new Vue({
         }).then(res=>{
             good.number ++
         })
+    },
+    removeConfirm(){
+      let ids = []
+      this.removeLists.forEach(good=>{
+          ids.push(good.id)
+      })
+      axios.post(url.cartMremove,ids).then(res=>{
+          this.removePopup = false
+          this.cartLists.forEach(shop=>{
+              let arr = []
+              shop.goodsList.forEach(good=>{
+                  let index = this.removeLists.findIndex(item=>{
+                      return item.id === good.id
+                  })
+                  if(index === -1){
+                    arr.push(good) 
+                 }
+              })
+             
+              shop.goodsList = arr
+          })
+          
+
+      })
+        
     }
-   
     
 },
 components:{
