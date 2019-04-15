@@ -5,6 +5,7 @@ import axios from 'axios'
 import Vue from 'vue'
 import url from 'js/api'
 import foot from 'components/foot'
+import { runInThisContext } from 'vm';
 
 
 
@@ -18,7 +19,9 @@ new Vue({
         editingShop:null,
         editingShopIndex: -1,
         removeChecked:false,
-        allRemoveChecked: false
+        allRemoveChecked: false,
+        editing: false,
+        editingMsg:'编辑'
     },
     computed:{
       allSelected:{
@@ -52,17 +55,20 @@ new Vue({
             })
             this.total = total
             return arr
-        }    
+        } return []   
         },
         removeLists(){
-            if(this.editingShop){
-                let arr = []
-                this.editingShop.goodsList.forEach(good=>{
-                    if(good.checked){
-                        arr.push(good)
-                    }
-                })
-            return arr} return []
+            if(this.editing){
+              let arr = []
+              this.cartLists.forEach(shop=>{
+                  shop.goodsList.forEach(good=>{
+                      if(good.removeChecked){
+                          arr.push(good)
+                      }
+                  })
+              })
+            return arr
+        } return []
         }
       },
     created(){
@@ -74,9 +80,7 @@ new Vue({
               let lists = res.data.cartList
               lists.forEach(shop=>{
                   shop.checked = false
-                  shop.editing = false
                   shop.removeChecked = false
-                  shop.editingMsg = '编辑'
                   shop.goodsList.forEach(good=>{
                       good.checked = false
                       good.removeChecked = false
@@ -85,15 +89,19 @@ new Vue({
               this.cartLists = lists
             })
         },
+        edit(){
+            this.editing= !this.editing
+            this.editingMsg = this.editing? '完成':'编辑'
+         },
         selectGood(good,shop){
-            let attr = shop.editing? 'removeChecked':'checked'
+            let attr = this.editing? 'removeChecked':'checked'
             good[attr]=!good[attr]
             shop[attr] = shop.goodsList.every(good=>{
                 return good[attr]
             })
         },
         selectShop(shop){
-            let attr = this.editingShop?'removeChecked':'checked'
+            let attr = this.editing?'removeChecked':'checked'
             shop[attr] = !shop[attr]
             shop.goodsList.forEach(good=>{
                 good[attr]= shop[attr]
@@ -102,18 +110,6 @@ new Vue({
         selectAll(){
            if(this.cartLists){
            this.allSelected = !this.allSelected }
-    },
-    edit(shop,shopIndex){
-        shop.editing = ! shop.editing
-        shop.editingMsg = shop.editing ? '完成':'编辑'
-        this.cartLists.forEach((item,index)=>{
-            if(shopIndex !== index){ 
-                item.editingMsg = shop.editing ? '':'编辑'
-            }
-         })
-          this.editingShop = shop.editing? shop: null
-          this.editngShopIndex = shop.editing?shopIndex: -1
-        
     },
     reduce(good){
         if(good.number===1) return
@@ -131,11 +127,9 @@ new Vue({
         }).then(res=>{
             good.number ++
         })
-    },
+    }
+   
     
-
-
-
 },
 components:{
     foot

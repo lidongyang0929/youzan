@@ -19,23 +19,22 @@
   <div class="container" style="min-height: 581px;">
     <div class="content clearfix js-page-content">
       <div id="cart-container">
-        <div class="top"><div class="top-left">购物车</div><div class="top-right">编辑</div></div>
+        <div class="top"><div class="top-left">购物车</div><div class="top-right" @click="edit">{{editingMsg}}</div></div>
           <div class="js-shop-list shop-list">
             <div class="block block-order block-cart" v-for="(shop,shopIndex) in cartLists">
               <div class="header">
-                <div class="select-group js-select-group"><span class="check" :class="{checked:shop.checked}"  @click="selectShop(shop)"></span></div> 
+                <div class="select-group js-select-group">
+                  <span class="check" :class="{checked:shop.checked}"  v-show="!editing" @click="selectShop(shop)"></span>
+                  <span class="check" :class="{checked:shop.removeChecked}" v-show="editing" @click="selectShop(shop)"></span>
+                </div> 
                 <a class="shop-title"><i class="custom-store-img">店铺：</i>{{shop.shopTitle}}</a>
-                <a href="javascript:;" data-type="cart" class="j-edit-list pull-right c-blue font-size-12 edit-list"
-                @click="edit(shop,shopIndex)">
-                  {{shop.editingMsg}}
-                </a>
               </div>
               <div>
-                <ul class="js-list block block-list block-list-cart border-0" :class="{editing:shop.editing}" v-for="(good,goodIndex) in shop.goodsList">
-                  <li class="block-item block-item-cart" @click="selectGood(good,shop)">
-                      <div class="check-container">
-                        <span class="check"  :class="{checked:good.checked}" v-show="!shop.editing"></span>
-                        <span class="check"  :class="{checked:good.removeChecked}" v-show="shop.editing"></span>
+                <ul class="js-list block block-list block-list-cart border-0" :class="{editing:editing}" v-for="(good,goodIndex) in shop.goodsList">
+                  <li class="block-item block-item-cart" >
+                      <div class="check-container" @click="selectGood(good,shop)">
+                        <span class="check"  :class="{checked:good.checked}" v-show="!editing"></span>
+                        <span class="check"  :class="{checked:good.removeChecked}" v-show="editing"></span>
                         </div>
                       <div class="name-card clearfix">
                         <a :href="'goods.html?id='+good.id" class="thumb js-goods-link"><img :src="good.img" ></a>
@@ -43,11 +42,11 @@
                             <h3 class="title js-ellipsis"><i>{{good.title}}</i></h3></a>
                           <p class="sku ellipsis"> {{good.sku}}</p>
                           <!-- 显示状态 -->
-                          <div class="num" v-show="!shop.editing">
+                          <div class="num" v-show="!editing">
                             ×<span class="num-txt">{{good.number}}</span>
                           </div>
                           <!-- 编辑状态 -->
-                          <div class="num" v-show="shop.editing">
+                          <div class="num" v-show="editing">
                             <div class="quantity">
                               <button type="button" class="minus" :class="{disabled:good.number===1}"></button>
                               <input type="text" pattern="[0-9]*" class="txt" v-model="good.number">
@@ -120,13 +119,12 @@
                 合计：¥<span class="js-total-price" style="color: rgb(255, 102, 0);">{{total}}</span>
                 <p class="c-gray-dark">不含运费</p>
               </div>
-              <button href="javascript:;" :disabled="!total" class="js-go-pay btn btn-orange-dark font-size-14">
+              <button href="javascript:;" v-show="!editing" :disabled="!selectedLists.length" class="js-go-pay btn btn-orange-dark font-size-14">
                 结算
               </button>
               <!-- 编辑状态 -->
-              <button href="javascript:;"  class="j-delete-goods btn font-size-14 btn-red" v-show="editingShop"
-              :disabled="!removeLists.length">删除
-                    </button>
+              <button href="javascript:;"  class="j-delete-goods btn font-size-14 btn-red" v-show="editing"
+              :disabled="!removeLists.length">删除</button>
             </div>
           </div>
       </div>
