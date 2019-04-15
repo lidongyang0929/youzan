@@ -16,8 +16,6 @@ new Vue({
         cartLists:null,
         checked: false,
         total:0,
-        editingShop:null,
-        editingShopIndex: -1,
         removeChecked:false,
         allRemoveChecked: false,
         editing: false,
@@ -40,6 +38,23 @@ new Vue({
                    })
                })
             }   
+        },
+        allRemoveSelected:{
+            get(){
+                if(this.cartLists){
+                    return this.cartLists.every(shop=>{
+                        return shop.removeChecked
+                    })
+                }
+            },
+            set(newVal){
+               this.cartLists.forEach(shop=>{
+                   shop.removeChecked=newVal
+                   shop.goodsList.forEach(good=>{
+                       good.removeChecked=newVal
+                   })
+               })
+            }
         },
         selectedLists(){
             let arr = []
@@ -108,8 +123,12 @@ new Vue({
             })
         },
         selectAll(){
-           if(this.cartLists){
-           this.allSelected = !this.allSelected }
+           if(!this.editing){
+           this.allSelected = !this.allSelected 
+        }else{
+            this.allRemoveSelected=!this.allRemoveSelected
+        }
+
     },
     reduce(good){
         if(good.number===1) return
