@@ -149,7 +149,7 @@ new Vue({
       })
       axios.post(url.cartMremove,ids).then(res=>{
           this.removePopup = false
-          this.cartLists.forEach(shop=>{
+          this.cartLists.forEach((shop,shopIndex)=>{
               let arr = []
               shop.goodsList.forEach(good=>{
                   let index = this.removeLists.findIndex(item=>{
@@ -159,8 +159,10 @@ new Vue({
                     arr.push(good) 
                  }
               })
-             
               shop.goodsList = arr
+              if(!arr.length){
+                this.cartLists.splice(shopIndex,1)
+              }
           })
           
 
