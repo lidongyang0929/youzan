@@ -14,7 +14,8 @@ export default{
             instance:this.$route.query.instance,
             addressData:require('js/address.json'),
             cityList:null,
-            districtList:null
+            districtList:null,
+            id:''
             
         }
     },
@@ -68,7 +69,7 @@ export default{
                  return item.value === val
             })
          this.cityList = list[index].children
-        
+         this.cityValue = -1
          this.districtvalue = -1
          if(this.type === 'edit'){
              this.cityValue = parseInt(this.instance.cityValue)
