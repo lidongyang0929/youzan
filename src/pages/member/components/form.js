@@ -24,31 +24,29 @@ export default{
             let {name, tel, provinceValue, cityValue, districtValue, address} = this
             let data = {name, tel, provinceValue, cityValue, districtValue, address}
             if(this.type === 'add'){
-                Address.add(data).then(res=>{
-                    this.$router.go(-1)
-                })
+               this.$router.go(-1)
             }
             if(this.type === 'edit'){
                 data.id = this.id
-                Address.update(data).then(res=>{
+                
                     this.$router.go(-1)
-                })
+              
                 
             }
             
         },
         remove(){
             if(window.confirm('确认删除?')){
-                Address.remove(this.id).then(res=>{
+               
                     this.$router.go(-1)
-                })
+                
             }
            
         },
         setDefault(){
-            Address.setDefault(this.id).then(res=>{
+            
                 this.$router.go(-1)
-            })
+            
         }
     },
     created(){

@@ -20,7 +20,6 @@ let url = {
 }
 let host = 'https://www.easy-mock.com/mock/5c9c3045d172204b3a07ecb0/youzan'
 
-
 for(let key in url){
     url[key] = host + url[key]
 }
