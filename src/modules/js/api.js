@@ -18,7 +18,7 @@ let url = {
     addressSetDefault:'/address/setDefault'
 
 }
-let host = 'http://rap2api.taobao.org/app/mock/7058'
+let host = 'https://www.easy-mock.com/mock/5c9c3045d172204b3a07ecb0/youzan'
 
 for(let key in url){
     url[key] = host + url[key]
