@@ -1,5 +1,6 @@
 import Address from 'js/addressService.js'
 
+
 export default{
     data(){
         return {
@@ -7,7 +8,7 @@ export default{
             tel:'',
             provinceValue:-1,
             cityValue:-1,
-            districtvalue:-1,
+            districtValue:-1,
             address:'',
             type:this.$route.query.type,
             instance:this.$route.query.instance,
@@ -61,13 +62,13 @@ export default{
     },
     watch:{
         provinceValue(val){
-            if(val=== -1) return
+            if (val === -1) return
             let list = this.addressData.list
             let index = list.findIndex(item=>{
                  return item.value === val
             })
          this.cityList = list[index].children
-         this.cityValue = -1
+        
          this.districtvalue = -1
          if(this.type === 'edit'){
              this.cityValue = parseInt(this.instance.cityValue)

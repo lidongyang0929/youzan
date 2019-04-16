@@ -19,11 +19,11 @@
               <option :value="p.value" v-for="p in addressData.list">{{p.label}}</option>
             </select>
             <select class="js-city-selector" v-model="cityValue">
-            <option :value="-1">选择城市</option>
+            <option value="-1">选择城市</option>
               <option :value="c.value" v-for="c in cityList">{{c.label}}</option>
             </select>
-            <select class="js-county-selector" v-model="cityValue">
-            <option :value="-1">选择地区</option>
+            <select class="js-county-selector" v-model="districtValue">
+            <option value="-1">选择地区</option>
               <option v-for="d in districtList" :value="d.value">{{d.label}}</option>
             </select>
           </div>
