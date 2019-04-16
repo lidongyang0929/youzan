@@ -257,7 +257,7 @@
   }
    
   .c-black {
-    color: #333 !important
+    color: #333 
   }
    
   .c-yellow {
@@ -1159,3 +1159,4 @@
       background-image: url("/v2/image/wap/right_icon/icons_sprite/icons_sprite@2x_29025c38a6.png")
     }
   }
+   

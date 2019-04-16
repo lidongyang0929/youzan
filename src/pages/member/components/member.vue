@@ -58,8 +58,8 @@
         </div>
         
         <div class="block block-list list-vertical">
-          <router-link class="block-item link clearfix ico-setting js-login" to="/address" target="_self">
-            <p class="title-info c-black font-size-14">收货地址管理</p>
+          <router-link class="block-item link clearfix ico-setting js-login"  to="/address" target="_self">
+            <p class="title-info c-black font-size-14">收货地址管理(点这里呀)</p>
           </router-link>
           <a class="block-item link clearfix ico-help"  target="_blank">
             <p class="title-info c-black font-size-14">联系客服</p>
