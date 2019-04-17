@@ -27,23 +27,14 @@ export default{
                this.$store.dispatch('addAction',data)
             }
             if(this.type === 'edit'){
-                data.id = this.id
-                this.$router.go(-1)  
+               this.$store.dispatch('updateAction',data) 
             }
             
         },
         remove(){
             if(window.confirm('确认删除?')){
-               
-                    this.$store.dispatch('removeAction',this.id)
-                
-            }
-           
-        },
-        setDefault(){
-            
-                this.$router.go(-1)
-            
+                this.$store.dispatch('removeAction',this.id)   
+            } 
         }
     },
     created(){
@@ -57,8 +48,8 @@ export default{
         }
     },
     watch:{
-         lists(){
-         this.$router.go(-1)
+        lists(){
+          this.$router.go(-1)
         },
         provinceValue(val){
             if (val === -1) return

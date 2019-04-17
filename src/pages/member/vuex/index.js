@@ -18,15 +18,21 @@ const store = new Vuex.Store({
        },
        remove(state,id){
            let index = state.lists.findIndex(item=>{
-               item.id === id
+               return item.id === id
            })
            state.lists.splice(index,1)
+       },
+       update(state,instance){
+          let index = state.lists.findIndex(item=>{
+              return item.id = instance.id
+          })
+          state.lists[index] = instance
        }
    },
    actions:{
        getLists({commit}){
            Address.list().then(res=>{
-               commit('init',res.data.lists)
+            commit('init',res.data.lists)
            })
        },
        addAction({commit},instance){
@@ -35,6 +41,9 @@ const store = new Vuex.Store({
        },
        removeAction({commit},id){
            commit('remove',id)
+       },
+       updateAction({commit},instance){
+           commit('update',instance)
        }
    }
    
