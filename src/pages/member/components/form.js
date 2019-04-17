@@ -27,6 +27,7 @@ export default{
                this.$store.dispatch('addAction',data)
             }
             if(this.type === 'edit'){
+               data.id = this.id
                this.$store.dispatch('updateAction',data) 
             }
             
@@ -48,8 +49,11 @@ export default{
         }
     },
     watch:{
-        lists(){
-          this.$router.go(-1)
+        lists:{
+            deep:true,
+            handler(){
+                this.$router.go(-1)
+            }
         },
         provinceValue(val){
             if (val === -1) return
