@@ -12,6 +12,15 @@ const store = new Vuex.Store({
    mutations:{
        init(state,lists){
            state.lists = lists
+       },
+       add(state,instance){
+           state.lists.push(instance)
+       },
+       remove(state,id){
+           let index = state.lists.findIndex(item=>{
+               item.id === id
+           })
+           state.lists.splice(index,1)
        }
    },
    actions:{
@@ -19,6 +28,13 @@ const store = new Vuex.Store({
            Address.list().then(res=>{
                commit('init',res.data.lists)
            })
+       },
+       addAction({commit},instance){
+          commit('add',instance)
+         
+       },
+       removeAction({commit},id){
+           commit('remove',id)
        }
    }
    

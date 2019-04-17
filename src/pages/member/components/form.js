@@ -24,21 +24,18 @@ export default{
             let {name, tel, provinceValue, cityValue, districtValue, address} = this
             let data = {name, tel, provinceValue, cityValue, districtValue, address}
             if(this.type === 'add'){
-               this.$router.go(-1)
+               this.$store.dispatch('addAction',data)
             }
             if(this.type === 'edit'){
                 data.id = this.id
-                
-                    this.$router.go(-1)
-              
-                
+                this.$router.go(-1)  
             }
             
         },
         remove(){
             if(window.confirm('确认删除?')){
                
-                    this.$router.go(-1)
+                    this.$store.dispatch('removeAction',this.id)
                 
             }
            
@@ -60,6 +57,9 @@ export default{
         }
     },
     watch:{
+         lists(){
+         this.$router.go(-1)
+        },
         provinceValue(val){
             if (val === -1) return
             let list = this.addressData.list
@@ -83,6 +83,11 @@ export default{
             if(this.tyep==="edit"){
                 this.districtValue = parseInt(this.instance.districtValue)
             }
+        }
+    },
+    computed:{
+        lists(){
+            return this.$store.state.lists
         }
     }
 }
